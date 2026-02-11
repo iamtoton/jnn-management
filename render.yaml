@@ -3,7 +3,6 @@ services:
   - type: web
     name: jnn-backend
     runtime: node
-    plan: free
     buildCommand: cd backend && npm install
     startCommand: cd backend && node server.js
     envVars:
@@ -16,7 +15,6 @@ services:
   - type: web
     name: jnn-frontend
     runtime: static
-    plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
     routes:
