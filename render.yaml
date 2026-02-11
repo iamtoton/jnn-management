@@ -3,7 +3,7 @@ services:
   - type: web
     name: jnn-backend
     runtime: node
-    buildCommand: cd backend && npm install
+    buildCommand: cd backend && npm ci
     startCommand: cd backend && node server.js
     envVars:
       - key: NODE_ENV
@@ -15,7 +15,7 @@ services:
   - type: web
     name: jnn-frontend
     runtime: static
-    buildCommand: cd frontend && npm install && npm run build
+    buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: frontend/dist
     routes:
       - type: rewrite
