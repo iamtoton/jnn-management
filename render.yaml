@@ -3,6 +3,7 @@ services:
   - type: web
     name: jnn-backend
     runtime: node
+    plan: free
     buildCommand: cd backend && npm install
     startCommand: cd backend && node server.js
     envVars:
@@ -10,16 +11,12 @@ services:
         value: production
       - key: PORT
         value: 3001
-      - key: FRONTEND_URL
-        fromService:
-          name: jnn-frontend
-          type: static
-          property: url
 
-  # Frontend Static Site
-  - type: static
+  # Frontend Static Site  
+  - type: web
     name: jnn-frontend
     runtime: static
+    plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
     routes:
@@ -28,7 +25,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: jnn-backend
-          type: web
-          property: url
+        value: https://jnn-backend.onrender.com
